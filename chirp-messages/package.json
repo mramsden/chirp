@@ -1,0 +1,24 @@
+{
+  "name": "chirp-messages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec node index.js | pino-pretty -c -l",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "pg": "^7.8.2",
+    "pg-format": "^1.0.4",
+    "pino": "^5.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "pino-pretty": "^2.5.0"
+  }
+}
