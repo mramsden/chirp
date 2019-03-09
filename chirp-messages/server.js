@@ -1,4 +1,5 @@
 const Koa = require('koa');
+const cors = require('@koa/cors');
 const bodyparser = require('koa-bodyparser');
 const Router = require('koa-router');
 const logger = require('./logger');
@@ -12,6 +13,7 @@ module.exports = ({ port = process.env.PORT || 3000 } = {}) => {
   router.use('/messages', messagesRouter.routes(), messagesRouter.allowedMethods());
 
   app
+    .use(cors())
     .use(bodyparser())
     .use(router.routes())
     .use(router.allowedMethods());

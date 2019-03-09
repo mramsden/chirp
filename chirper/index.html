@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chirper</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <template id="messages">
+        <h1>Your chirps</h1>
+        <ul>
+            {{#messages}}
+                <li>{{body}}</li>
+            {{/messages}}
+        </ul>
+    </template>
+    <template id="error">
+        <h1>Error</h1>
+        <p>Failed to load messages</p>
+    </template>
+</body>
+<script src="https://unpkg.com/mustache@3.0.1/mustache.min.js" integrity="sha384-CshXe6yvzsA+7Kb1fIvMqPlkkvLeelv3nspH/zUR748NqOUfTBHQbcS6ZZp0r0yN" crossorigin="anonymous"></script>
+<script type="module" src="chirper.js"></script>
+</html>

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run:development",
+    "start": "npm run run:development",
     "run:development": "nodemon --exec node index.js | pino-pretty -c -l",
     "run:production": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
@@ -23,12 +24,13 @@
     "nodemon": "^1.18.10",
     "pino-pretty": "^2.5.0"
   },
-  "bundledDependencies": [
+  "bundleDependencies": [
     "koa",
     "koa-bodyparser",
     "koa-router",
     "pg",
     "pg-format",
-    "pino"
+    "pino",
+    "@koa/cors"
   ]
 }
