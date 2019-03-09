@@ -1,1 +1,4 @@
 schema.sql
+Dockerfile
+.dockerignore
+chirp-messages-*.tgz
