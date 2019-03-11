@@ -23,14 +23,5 @@
   "devDependencies": {
     "nodemon": "^1.18.10",
     "pino-pretty": "^2.5.0"
-  },
-  "bundleDependencies": [
-    "koa",
-    "koa-bodyparser",
-    "koa-router",
-    "pg",
-    "pg-format",
-    "pino",
-    "@koa/cors"
-  ]
+  }
 }
