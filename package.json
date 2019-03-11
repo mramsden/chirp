@@ -1,4 +1,4 @@
 {
   "private": true,
-  "workspaces": ["chirp-messages"]
+  "workspaces": ["chirp-accounts", "chirp-messages"]
 }

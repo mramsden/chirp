@@ -1,0 +1,26 @@
+{
+  "name": "chirp-accounts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "yarn run run:production",
+    "dev": "yarn run run:development",
+    "run:development": "nodemon --exec node index.js | pino-pretty -c -l",
+    "run:production": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "pino": "^5.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "pino-pretty": "^2.5.0"
+  }
+}
