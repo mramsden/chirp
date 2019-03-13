@@ -5,9 +5,9 @@ const logger = require('./logger');
 const pool = new Pool({
   host: 'localhost',
   port: 5432,
-  user: 'chirp',
+  user: 'chirp_messages',
   password: 'password',
-  database: 'chirp',
+  database: 'chirp_messages',
   min: 1,
   max: 4
 });

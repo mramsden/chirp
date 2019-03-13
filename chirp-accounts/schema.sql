@@ -8,4 +8,7 @@ CREATE TABLE accounts (
     created_at timestamp default now()
 );
 
-GRANT SELECT, INSERT ON accounts TO chirp;
+-- Setup connection permissions for chirp_accounts
+ALTER ROLE chirp_accounts WITH LOGIN;
+GRANT CONNECT ON DATABASE chirp_accounts TO chirp_accounts;
+GRANT SELECT, INSERT ON accounts TO chirp_accounts;
