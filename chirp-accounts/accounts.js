@@ -1,8 +1,9 @@
 const argon = require('argon2');
 const { Pool } = require('pg');
-const { hash } = require('./hasher');
+const { hash, verify } = require('./hasher');
 const logger = require('./logger');
 const IllegalInputError = require('./illegalInputError');
+const IncorrectCredentialsError = require('./incorrectCredentialsError');
 
 const pool = new Pool({
   host: 'localhost',
@@ -40,5 +41,29 @@ module.exports.createAccount = async (username, password) => {
       throw new IllegalInputError('username', 'must be unique');
     }
     throw e;
+  }
+};
+
+/**
+ * Verifies that the supplied username and password exist.
+ * 
+ * @throws IncorrectCredentialsError
+ * @throws IllegalInputError
+ */
+module.exports.verifyAccount = async (username, password) => {
+  if (!username) {
+    throw new IllegalInputError('username', 'cannot be empty');
+  }
+  if (!password) {
+    throw new IllegalInputError('password', 'cannot be empty');
+  }
+
+  const result = await pool.query('SELECT password FROM accounts WHERE username = $1', [username]);
+  if (result.rowCount === 0) {
+    throw new IncorrectCredentialsError();
+  }
+  const { password: hashedPassword } = result.rows[0];
+  if (!(await verify(password, hashedPassword))) {
+    throw new IncorrectCredentialsError();
   }
 };

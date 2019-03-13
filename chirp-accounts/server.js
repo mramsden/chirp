@@ -3,14 +3,17 @@ const cors = require('@koa/cors');
 const bodyparser = require('koa-bodyparser');
 const Router = require('koa-router');
 const IllegalInputError = require('./illegalInputError');
+const IncorrectCredentialsError = require('./incorrectCredentialsError');
 const logger = require('./logger');
 const accountsRouter = require('./routes/accounts');
 const adminRouter = require('./routes/admin');
+const tokensRouter = require('./routes/tokens');
 
 module.exports = ({ port = process.env.PORT || 3000 } = {}) => {
   const app = new Koa();
   const router = new Router();
   router.use('/accounts', accountsRouter.routes(), accountsRouter.allowedMethods());
+  router.use('/tokens', tokensRouter.routes(), adminRouter.allowedMethods());
   router.use('/admin', adminRouter.routes(), adminRouter.allowedMethods());
 
   app
@@ -21,6 +24,9 @@ module.exports = ({ port = process.env.PORT || 3000 } = {}) => {
         await next()
       } catch (e) {
         if (e instanceof IllegalInputError) {
+          ctx.status = 400;
+          ctx.body = e.toJSON();
+        } else if (e instanceof IncorrectCredentialsError) {
           ctx.status = 400;
           ctx.body = e.toJSON();
         } else {
